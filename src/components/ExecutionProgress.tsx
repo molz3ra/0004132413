@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Loader2, Globe, Users, Sparkles, CheckCircle2 } from 'lucide-react';
+import { Globe, Users, Sparkles, Check, Terminal } from 'lucide-react';
 
 interface ExecutionProgressProps {
   personasCount: number;
@@ -11,21 +11,21 @@ interface ExecutionProgressProps {
 const STEPS = [
   {
     id: 1,
-    title: 'Ingestão e Sanitização',
-    desc: 'Lendo DOM com Jina Reader API e removendo scripts/ruído...',
-    icon: Globe,
+    tag: 'STAGE_01',
+    title: 'Ingestão e Sanitização Estrutural',
+    detail: 'Lendo DOM via Jina Reader API e isolando Hero, Headings e Propostas de Valor...',
   },
   {
     id: 2,
-    title: 'Disparo Paralelo de Agentes',
-    desc: 'Executando avaliação simultânea com Personas via Promise.all...',
-    icon: Users,
+    tag: 'STAGE_02',
+    title: 'Disparo Paralelo do Comitê Sintético',
+    detail: 'Instanciando chamadas concorrentes com viés cognitivo e ceticismo individual...',
   },
   {
     id: 3,
-    title: 'Síntese de CRO e Reescrita de Copy',
-    desc: 'Nó Consolidador calculando métricas de radar e plano Antes vs Depois...',
-    icon: Sparkles,
+    tag: 'STAGE_03',
+    title: 'Consolidação de CRO & Diff de Copywriting',
+    detail: 'Calculando vetores de atrito e gerando reescrita de alta conversão...',
   },
 ];
 
@@ -33,8 +33,8 @@ export function ExecutionProgress({ personasCount }: ExecutionProgressProps) {
   const [currentStep, setCurrentStep] = useState(1);
 
   useEffect(() => {
-    const t1 = setTimeout(() => setCurrentStep(2), 1200);
-    const t2 = setTimeout(() => setCurrentStep(3), 3200);
+    const t1 = setTimeout(() => setCurrentStep(2), 1100);
+    const t2 = setTimeout(() => setCurrentStep(3), 2900);
 
     return () => {
       clearTimeout(t1);
@@ -43,77 +43,84 @@ export function ExecutionProgress({ personasCount }: ExecutionProgressProps) {
   }, []);
 
   return (
-    <div className="max-w-2xl mx-auto my-12 p-6 rounded-2xl glass-panel border border-emerald-500/30 shadow-2xl space-y-6">
-      <div className="flex items-center justify-between border-b border-zinc-800/80 pb-4">
-        <div className="flex items-center space-x-3">
-          <Loader2 className="w-5 h-5 text-emerald-400 animate-spin" />
-          <div>
-            <h3 className="text-sm font-semibold text-white">
-              Executando Pipeline do Focus Group Sintético
-            </h3>
-            <p className="text-xs text-zinc-400">
-              Orquestrando {personasCount} personas sintéticas com contratos Zod
-            </p>
-          </div>
-        </div>
-        <span className="font-mono text-xs text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">
-          Etapa {currentStep} de 3
-        </span>
-      </div>
-
-      <div className="space-y-4">
-        {STEPS.map((step) => {
-          const Icon = step.icon;
-          const isDone = currentStep > step.id;
-          const isCurrent = currentStep === step.id;
-
-          return (
-            <motion.div
-              key={step.id}
-              initial={{ opacity: 0.5, y: 5 }}
-              animate={{ opacity: isCurrent || isDone ? 1 : 0.4, y: 0 }}
-              className={`p-3.5 rounded-xl border transition-all flex items-start space-x-3.5 ${
-                isCurrent
-                  ? 'bg-zinc-900 border-emerald-500/50 shadow-md shadow-emerald-500/5'
-                  : isDone
-                  ? 'bg-zinc-900/30 border-zinc-800 text-zinc-400'
-                  : 'bg-zinc-950/20 border-zinc-900 text-zinc-600'
-              }`}
-            >
-              <div
-                className={`p-2 rounded-lg mt-0.5 ${
-                  isCurrent
-                    ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                    : isDone
-                    ? 'bg-zinc-800 text-emerald-400'
-                    : 'bg-zinc-900 text-zinc-600'
-                }`}
-              >
-                {isDone ? <CheckCircle2 className="w-4 h-4 text-emerald-400" /> : <Icon className="w-4 h-4" />}
+    <div className="max-w-3xl mx-auto my-10 px-4">
+      <div className="double-bezel">
+        <div className="double-bezel-inner p-6 space-y-5">
+          {/* Header */}
+          <div className="flex items-center justify-between border-b border-white/[0.06] pb-4">
+            <div className="flex items-center space-x-3">
+              <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping" />
+              <div>
+                <h3 className="text-xs font-mono font-bold text-white uppercase tracking-wider">
+                  Execução do Pipeline Multi-Agente
+                </h3>
+                <p className="text-[11px] text-zinc-400 font-mono">
+                  {personasCount} personas sintéticas avaliando a proposta concorrentemente
+                </p>
               </div>
-              <div className="flex-1">
-                <div className="flex items-center justify-between">
-                  <h4
-                    className={`text-xs font-semibold ${
-                      isCurrent ? 'text-white' : isDone ? 'text-zinc-300' : 'text-zinc-500'
+            </div>
+            <span className="font-mono text-[10px] text-emerald-400 px-2.5 py-1 rounded bg-emerald-500/10 border border-emerald-500/20">
+              FASE {currentStep}/3
+            </span>
+          </div>
+
+          {/* Stepper Pipeline */}
+          <div className="space-y-2.5">
+            {STEPS.map((step) => {
+              const isDone = currentStep > step.id;
+              const isCurrent = currentStep === step.id;
+
+              return (
+                <div
+                  key={step.id}
+                  className={`p-3 rounded-xl border transition-all flex items-start space-x-3 ${
+                    isCurrent
+                      ? 'bg-white/[0.04] border-white/[0.15]'
+                      : isDone
+                      ? 'bg-white/[0.01] border-white/[0.04] opacity-70'
+                      : 'bg-transparent border-transparent opacity-30'
+                  }`}
+                >
+                  <div
+                    className={`w-5 h-5 rounded-md flex items-center justify-center text-[10px] font-mono font-bold mt-0.5 ${
+                      isDone
+                        ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
+                        : isCurrent
+                        ? 'bg-white text-zinc-950 font-bold'
+                        : 'bg-white/[0.05] text-zinc-500'
                     }`}
                   >
-                    {step.title}
-                  </h4>
-                  {isCurrent && (
-                    <span className="text-[10px] font-mono text-emerald-400 flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
-                      Em execução...
-                    </span>
-                  )}
+                    {isDone ? <Check className="w-3 h-3 text-emerald-400" /> : step.id}
+                  </div>
+
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="text-[10px] font-mono text-zinc-500">{step.tag}</span>
+                        <h4
+                          className={`text-xs font-semibold ${
+                            isCurrent ? 'text-white' : isDone ? 'text-zinc-300' : 'text-zinc-500'
+                          }`}
+                        >
+                          {step.title}
+                        </h4>
+                      </div>
+                      {isCurrent && (
+                        <span className="text-[10px] font-mono text-emerald-400">
+                          Processando...
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-[11px] text-zinc-400 mt-0.5 font-mono leading-relaxed">
+                      {step.detail}
+                    </p>
+                  </div>
                 </div>
-                <p className="text-[11px] text-zinc-400 mt-0.5">{step.desc}</p>
-              </div>
-            </motion.div>
-          );
-        })}
+              );
+            })}
+          </div>
+        </div>
       </div>
     </div>
   );
 }
-

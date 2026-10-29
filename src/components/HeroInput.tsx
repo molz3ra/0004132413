@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Globe, FileText, ArrowRight, Sparkles, Plus, Check, Sliders, ShieldAlert } from 'lucide-react';
+import { ArrowRight, SlidersHorizontal, Plus, Check, CornerDownRight, Globe, AlignLeft } from 'lucide-react';
 import { PRESET_PERSONAS, PersonaArchetype } from '@/lib/personas';
 import { PRESET_ANALYSES, PresetItem } from '@/lib/presets';
 
@@ -22,18 +22,18 @@ interface HeroInputProps {
 }
 
 const NICHES = [
-  'SaaS B2B',
-  'Infoproduto / Educação',
+  'SaaS B2B & Fintech',
+  'DevTools & Infraestrutura',
+  'Educação & Infoproduto',
   'E-commerce & D2C',
   'App Mobile & Consumo',
-  'Fintech & Pagamentos',
-  'Serviços & Consultoria',
+  'Serviços Corporativos',
 ];
 
 export function HeroInput({ onAnalyze, onSelectPreset, isLoading }: HeroInputProps) {
   const [mode, setMode] = useState<'url' | 'text'>('url');
   const [inputValue, setInputValue] = useState('');
-  const [selectedNiche, setSelectedNiche] = useState('SaaS B2B');
+  const [selectedNiche, setSelectedNiche] = useState('SaaS B2B & Fintech');
   const [selectedPersonaIds, setSelectedPersonaIds] = useState<string[]>([
     'cfo-skeptic',
     'dev-senior',
@@ -86,264 +86,292 @@ export function HeroInput({ onAnalyze, onSelectPreset, isLoading }: HeroInputPro
   };
 
   return (
-    <section className="relative pt-10 pb-8 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-      {/* Background radial glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-emerald-500/5 blur-[120px] pointer-events-none rounded-full" />
-
-      {/* Hero Title */}
-      <div className="text-center space-y-3 mb-8">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-xs text-zinc-300">
+    <section className="relative pt-12 pb-6 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+      {/* Editorial Header */}
+      <div className="text-center space-y-4 mb-10">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.07] text-[10px] font-mono uppercase tracking-[0.12em] text-zinc-400">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-          <span>Teste a copy antes de queimar orçamento em tráfego pago</span>
+          <span>Auditoria Comportamental Pré-Tráfego</span>
         </div>
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-          Simulador de <span className="bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent">Focus Group</span> Sintético
+
+        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-semibold text-white tracking-[-0.035em] leading-[1.08] max-w-4xl mx-auto">
+          Simulador de Fricção e Objeções para Landing Pages
         </h1>
-        <p className="text-sm sm:text-base text-zinc-400 max-w-2xl mx-auto leading-relaxed">
-          Cole a URL da sua Landing Page. Múltiplos agentes de IA com vieses psicológicos contrastantes analisam seu posicionamento em paralelo e apontam cada atrito de conversão.
+
+        <p className="text-sm sm:text-base text-zinc-400 max-w-2xl mx-auto font-normal leading-relaxed">
+          Submeta sua proposta de valor a um comitê sintético com vieses psicológicos contrastantes antes de alocar capital em mídia paga.
         </p>
       </div>
 
-      {/* Main Input Card */}
-      <div className="relative rounded-2xl glass-panel p-5 sm:p-6 shadow-2xl border border-zinc-800/80">
-        {/* Mode Toggle */}
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center space-x-1 bg-zinc-900/90 p-1 rounded-lg border border-zinc-800 text-xs font-medium">
-            <button
-              type="button"
-              onClick={() => setMode('url')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md transition-all ${
-                mode === 'url' ? 'bg-zinc-800 text-white shadow-sm' : 'text-zinc-400 hover:text-zinc-200'
-              }`}
-            >
-              <Globe className="w-3.5 h-3.5 text-emerald-400" />
-              Analisar URL
-            </button>
-            <button
-              type="button"
-              onClick={() => setMode('text')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md transition-all ${
-                mode === 'text' ? 'bg-zinc-800 text-white shadow-sm' : 'text-zinc-400 hover:text-zinc-200'
-              }`}
-            >
-              <FileText className="w-3.5 h-3.5 text-cyan-400" />
-              Colar Copy/Texto
-            </button>
-          </div>
-
-          {/* Niche selector */}
-          <div className="flex items-center space-x-2">
-            <span className="text-xs text-zinc-400 hidden sm:inline">Nicho da Oferta:</span>
-            <select
-              value={selectedNiche}
-              onChange={(e) => setSelectedNiche(e.target.value)}
-              className="bg-zinc-900 border border-zinc-800 rounded-lg px-2.5 py-1.5 text-xs text-zinc-200 focus:outline-none focus:border-emerald-500/60"
-            >
-              {NICHES.map((n) => (
-                <option key={n} value={n}>
-                  {n}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-
-        {/* Input Form */}
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {mode === 'url' ? (
-            <div className="relative">
-              <input
-                type="url"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                placeholder="https://suapagina.com.br/oferta-especial"
-                required
-                className="w-full bg-zinc-900/90 border border-zinc-800/90 rounded-xl px-4 py-3.5 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500/80 focus:ring-1 focus:ring-emerald-500/30 transition-all font-mono"
-              />
+      {/* Hardware Console Double-Bezel Architecture */}
+      <div className="double-bezel shadow-2xl">
+        <div className="double-bezel-inner p-5 sm:p-7 space-y-6">
+          {/* Mode Switch & Niche Selector */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/[0.05] pb-4">
+            <div className="flex items-center space-x-1.5 bg-[#090b0e] p-1 rounded-lg border border-white/[0.06] text-xs font-mono">
+              <button
+                type="button"
+                onClick={() => setMode('url')}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md transition-all tactile-btn ${
+                  mode === 'url'
+                    ? 'bg-white/[0.08] text-white font-medium border border-white/[0.08]'
+                    : 'text-zinc-500 hover:text-zinc-300'
+                }`}
+              >
+                <Globe className="w-3.5 h-3.5 text-emerald-400" />
+                <span>URL da Página</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setMode('text')}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md transition-all tactile-btn ${
+                  mode === 'text'
+                    ? 'bg-white/[0.08] text-white font-medium border border-white/[0.08]'
+                    : 'text-zinc-500 hover:text-zinc-300'
+                }`}
+              >
+                <AlignLeft className="w-3.5 h-3.5 text-zinc-400" />
+                <span>Copywriting Bruto</span>
+              </button>
             </div>
-          ) : (
-            <textarea
-              rows={4}
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              placeholder="Cole aqui a headline, subtítulo, tópicos e chamada para ação do seu anúncio ou página..."
-              required
-              className="w-full bg-zinc-900/90 border border-zinc-800/90 rounded-xl p-4 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500/80 focus:ring-1 focus:ring-emerald-500/30 transition-all font-sans"
-            />
-          )}
 
-          {/* Personas Selector Chips */}
-          <div className="pt-2">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-semibold text-zinc-300 flex items-center gap-1.5">
-                <Sliders className="w-3.5 h-3.5 text-emerald-400" />
-                Selecione as Personas Sintéticas ({selectedPersonaIds.length} ativas):
+            <div className="flex items-center space-x-2">
+              <span className="text-[11px] font-mono text-zinc-400 uppercase tracking-wider">
+                Nicho:
               </span>
-              <button
-                type="button"
-                onClick={() => setShowCustomModal(true)}
-                className="text-[11px] text-emerald-400 hover:text-emerald-300 font-medium flex items-center gap-1 hover:underline"
+              <select
+                value={selectedNiche}
+                onChange={(e) => setSelectedNiche(e.target.value)}
+                className="bg-[#090b0e] border border-white/[0.07] rounded-lg px-3 py-1.5 text-xs font-mono text-zinc-200 focus:outline-none focus:border-white/[0.2] transition-colors"
               >
-                <Plus className="w-3 h-3" />
-                {hasCustomPersona ? 'Editar Persona Custom' : 'Criar Persona Custom'}
-              </button>
+                {NICHES.map((n) => (
+                  <option key={n} value={n} className="bg-[#0c0d12]">
+                    {n}
+                  </option>
+                ))}
+              </select>
             </div>
+          </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-              {PRESET_PERSONAS.map((p) => {
-                const isSelected = selectedPersonaIds.includes(p.id);
-                return (
-                  <button
-                    key={p.id}
-                    type="button"
-                    onClick={() => togglePersona(p.id)}
-                    className={`flex items-start space-x-2.5 p-2.5 rounded-xl border text-left transition-all ${
-                      isSelected
-                        ? 'bg-zinc-800/90 border-emerald-500/50 shadow-sm shadow-emerald-500/10'
-                        : 'bg-zinc-900/40 border-zinc-800/60 opacity-60 hover:opacity-100 hover:border-zinc-700'
-                    }`}
-                  >
-                    <span className="text-xl leading-none mt-0.5">{p.avatar}</span>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs font-semibold text-zinc-100 truncate">{p.name}</span>
-                        {isSelected && <Check className="w-3.5 h-3.5 text-emerald-400" />}
-                      </div>
-                      <p className="text-[10px] text-zinc-400 truncate">{p.role}</p>
-                      <div className="flex items-center gap-1 mt-1 text-[9px] text-zinc-500 font-mono">
-                        <span>Ceticismo:</span>
-                        <div className="w-10 bg-zinc-700 h-1 rounded-full overflow-hidden">
-                          <div
-                            style={{ width: `${p.skepticismLevel * 10}%` }}
-                            className={`h-full ${
-                              p.skepticismLevel >= 8
-                                ? 'bg-rose-500'
-                                : p.skepticismLevel >= 6
-                                ? 'bg-amber-500'
-                                : 'bg-emerald-500'
-                            }`}
-                          />
-                        </div>
-                        <span>{p.skepticismLevel}/10</span>
-                      </div>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-
-            {hasCustomPersona && (
-              <div className="mt-2 p-2.5 rounded-xl bg-purple-950/30 border border-purple-500/40 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <span className="text-lg">👤</span>
-                  <div>
-                    <span className="text-xs font-semibold text-purple-300">
-                      {customName} ({customRole})
-                    </span>
-                    <p className="text-[10px] text-zinc-400">Dor: &quot;{customPain}&quot;</p>
+          {/* Form */}
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              {mode === 'url' ? (
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-zinc-600 font-mono text-xs">
+                    URL &gt;
                   </div>
+                  <input
+                    type="url"
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    placeholder="https://suaempresa.com.br/produto"
+                    required
+                    className="w-full bg-[#090a0f] border border-white/[0.07] rounded-xl pl-16 pr-4 py-3.5 text-sm font-mono text-white placeholder:text-zinc-600 focus:outline-none focus:border-white/[0.25] focus:ring-1 focus:ring-white/[0.1] transition-all"
+                  />
                 </div>
-                <span className="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-purple-500/20 text-purple-300">
-                  Customizada Ativa
+              ) : (
+                <textarea
+                  rows={4}
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  placeholder="Insira a headline, subtítulo, argumentos e chamada para ação da sua página ou anúncio..."
+                  required
+                  className="w-full bg-[#090a0f] border border-white/[0.07] rounded-xl p-4 text-xs font-mono text-zinc-200 placeholder:text-zinc-600 focus:outline-none focus:border-white/[0.25] focus:ring-1 focus:ring-white/[0.1] transition-all leading-relaxed"
+                />
+              )}
+            </div>
+
+            {/* Persona Archetypes Selector */}
+            <div className="space-y-3">
+              <div className="flex items-center justify-between text-xs">
+                <span className="font-mono text-zinc-400 uppercase tracking-wider flex items-center gap-1.5 text-[11px]">
+                  <SlidersHorizontal className="w-3.5 h-3.5 text-emerald-400" />
+                  Comitê Sintético ({selectedPersonaIds.length} ativos):
                 </span>
+                <button
+                  type="button"
+                  onClick={() => setShowCustomModal(true)}
+                  className="text-[11px] font-mono text-zinc-400 hover:text-white flex items-center gap-1 transition-colors hover:underline"
+                >
+                  <Plus className="w-3 h-3" />
+                  {hasCustomPersona ? 'Configurar Persona Custom' : 'Adicionar Perfil Custom'}
+                </button>
               </div>
-            )}
-          </div>
 
-          {/* Action CTA Button */}
-          <div className="pt-2">
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="w-full relative group overflow-hidden py-3.5 px-6 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-zinc-950 font-bold text-sm tracking-wide shadow-xl shadow-emerald-500/20 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              <Sparkles className="w-4 h-4 text-zinc-950 stroke-[2.5]" />
-              <span>{isLoading ? 'Executando Focus Group Sintético...' : 'Auditar Página com Agentes em Paralelo'}</span>
-              <ArrowRight className="w-4 h-4 text-zinc-950 stroke-[2.5] group-hover:translate-x-1 transition-transform" />
-            </button>
-          </div>
-        </form>
+              {/* Persona Grid (Clean Vector Glyphs, Zero Emoji Slop) */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+                {PRESET_PERSONAS.map((p) => {
+                  const isSelected = selectedPersonaIds.includes(p.id);
+                  return (
+                    <button
+                      key={p.id}
+                      type="button"
+                      onClick={() => togglePersona(p.id)}
+                      className={`group relative text-left p-3 rounded-xl border transition-all tactile-btn ${
+                        isSelected
+                          ? 'bg-white/[0.04] border-white/[0.18] shadow-sm'
+                          : 'bg-white/[0.01] border-white/[0.04] opacity-50 hover:opacity-90 hover:border-white/[0.09]'
+                      }`}
+                    >
+                      <div className="flex items-start justify-between mb-2">
+                        <div className="flex items-center space-x-2">
+                          <span className="w-6 h-6 rounded-md bg-white/[0.05] border border-white/[0.08] text-[10px] font-mono font-bold text-zinc-200 flex items-center justify-center">
+                            {p.initials}
+                          </span>
+                          <span className="text-[10px] font-mono font-medium tracking-wider text-zinc-400">
+                            {p.code}
+                          </span>
+                        </div>
+                        {isSelected && (
+                          <div className="w-4 h-4 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center">
+                            <Check className="w-2.5 h-2.5 text-emerald-400" />
+                          </div>
+                        )}
+                      </div>
 
-        {/* Zero-Click Presets Showcase */}
-        <div className="mt-6 pt-5 border-t border-zinc-800/80">
-          <div className="flex items-center justify-between mb-3">
-            <span className="text-[11px] font-mono text-zinc-400 flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-              Vitrine de Demonstração Instantânea (Zero-Click, 0.2s):
-            </span>
-          </div>
+                      <div className="space-y-0.5">
+                        <h4 className="text-xs font-semibold text-white tracking-tight">
+                          {p.name}
+                        </h4>
+                        <p className="text-[11px] text-zinc-400 truncate">
+                          {p.role}
+                        </p>
+                      </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-            {PRESET_ANALYSES.map((preset) => (
-              <button
-                key={preset.id}
-                type="button"
-                onClick={() => onSelectPreset(preset)}
-                className="group p-3 rounded-xl bg-zinc-900/60 border border-zinc-800 hover:border-emerald-500/40 hover:bg-zinc-900 text-left transition-all"
-              >
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-zinc-800 text-emerald-400 border border-zinc-700">
-                    {preset.badge}
-                  </span>
-                  <span className="text-[11px] font-mono text-zinc-500 group-hover:text-emerald-400 transition-colors">
-                    Score: {preset.data.report.overallScore}/100
+                      {/* Skepticism Meter */}
+                      <div className="mt-2.5 pt-2 border-t border-white/[0.04] flex items-center justify-between text-[10px] font-mono text-zinc-500">
+                        <span>Ceticismo:</span>
+                        <div className="flex items-center gap-1.5">
+                          <div className="w-12 bg-white/[0.06] h-1 rounded-full overflow-hidden">
+                            <div
+                              style={{ width: `${p.skepticismLevel * 10}%` }}
+                              className={`h-full ${
+                                p.skepticismLevel >= 8
+                                  ? 'bg-rose-400'
+                                  : p.skepticismLevel >= 6
+                                  ? 'bg-amber-400'
+                                  : 'bg-emerald-400'
+                              }`}
+                            />
+                          </div>
+                          <span className="text-zinc-300 font-semibold">{p.skepticismLevel}/10</span>
+                        </div>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {hasCustomPersona && (
+                <div className="p-3 rounded-xl bg-white/[0.02] border border-emerald-500/30 flex items-center justify-between text-xs">
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-6 h-6 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-[10px] font-mono font-bold text-emerald-400 flex items-center justify-center">
+                      CUS
+                    </span>
+                    <div>
+                      <span className="text-xs font-semibold text-white">
+                        {customName} — {customRole}
+                      </span>
+                      <p className="text-[11px] text-zinc-400">Objeção: &quot;{customPain}&quot;</p>
+                    </div>
+                  </div>
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                    Ativa
                   </span>
                 </div>
-                <h4 className="text-xs font-semibold text-zinc-200 group-hover:text-white truncate">
-                  {preset.title}
-                </h4>
-                <p className="text-[10px] text-zinc-500 line-clamp-1 mt-0.5">
-                  {preset.description}
-                </p>
+              )}
+            </div>
+
+            {/* Island Button Architecture with Button-in-Button */}
+            <div className="pt-2">
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="w-full relative group py-3.5 pl-6 pr-3.5 rounded-full bg-white text-zinc-950 hover:bg-zinc-100 font-semibold text-xs tracking-tight shadow-xl shadow-black/40 transition-all flex items-center justify-between disabled:opacity-40 disabled:cursor-not-allowed tactile-btn"
+              >
+                <span className="font-medium text-sm">
+                  {isLoading
+                    ? 'Orquestrando Focus Group Sintético em Paralelo...'
+                    : 'Executar Auditoria de Fricção (Pipeline Paralelo)'}
+                </span>
+                <span className="w-8 h-8 rounded-full bg-black/10 flex items-center justify-center group-hover:translate-x-0.5 transition-transform">
+                  <ArrowRight className="w-4 h-4 text-zinc-950" />
+                </span>
               </button>
-            ))}
+            </div>
+          </form>
+
+          {/* Minimalist Zero-Click Benchmarks Ribbon */}
+          <div className="pt-4 border-t border-white/[0.05] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-mono">
+            <span className="text-[11px] text-zinc-500 uppercase tracking-wider flex items-center gap-1.5">
+              <CornerDownRight className="w-3.5 h-3.5 text-zinc-600" />
+              Benchmarks Rápidos (0.2s):
+            </span>
+
+            <div className="flex flex-wrap items-center gap-2">
+              {PRESET_ANALYSES.map((preset) => (
+                <button
+                  key={preset.id}
+                  type="button"
+                  onClick={() => onSelectPreset(preset)}
+                  className="px-2.5 py-1 rounded-md bg-white/[0.02] border border-white/[0.06] hover:border-white/[0.18] hover:bg-white/[0.05] text-[11px] font-mono text-zinc-400 hover:text-white transition-all tactile-btn flex items-center gap-1.5"
+                >
+                  <span className="text-emerald-400 font-bold">{preset.badge}:</span>
+                  <span className="text-zinc-300">{preset.title.split('—')[0]}</span>
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Custom Persona Modal */}
+      {/* Modal Persona Custom */}
       {showCustomModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
-          <div className="w-full max-w-md bg-zinc-950 border border-zinc-800 rounded-2xl p-6 shadow-2xl">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-sm font-bold text-white flex items-center gap-2">
-                <Plus className="w-4 h-4 text-purple-400" />
-                Criar Persona Sintética Personalizada
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+          <div className="w-full max-w-md bg-[#0e1015] border border-white/[0.1] rounded-2xl p-6 shadow-2xl space-y-4">
+            <div className="flex items-center justify-between border-b border-white/[0.06] pb-3">
+              <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-white">
+                Definir Persona Sintética Personalizada
               </h3>
               <button
                 onClick={() => setShowCustomModal(false)}
-                className="text-zinc-500 hover:text-zinc-300 text-xs"
+                className="text-zinc-500 hover:text-white text-xs font-mono"
               >
                 ✕
               </button>
             </div>
             <form onSubmit={handleSaveCustom} className="space-y-3.5">
               <div>
-                <label className="block text-xs text-zinc-400 mb-1">Nome da Persona:</label>
+                <label className="block text-[11px] font-mono text-zinc-400 uppercase mb-1">
+                  Nome:
+                </label>
                 <input
                   type="text"
                   required
-                  placeholder="Ex: Amanda Silveira"
+                  placeholder="Ex: Gabriela Duarte"
                   value={customName}
                   onChange={(e) => setCustomName(e.target.value)}
-                  className="w-full bg-zinc-900 border border-zinc-800 rounded-lg p-2.5 text-xs text-white"
+                  className="w-full bg-[#08090d] border border-white/[0.08] rounded-lg p-2.5 text-xs text-white focus:outline-none focus:border-white/[0.2]"
                 />
               </div>
               <div>
-                <label className="block text-xs text-zinc-400 mb-1">Cargo / Perfil:</label>
+                <label className="block text-[11px] font-mono text-zinc-400 uppercase mb-1">
+                  Cargo / Função:
+                </label>
                 <input
                   type="text"
                   required
-                  placeholder="Ex: Head de Marketing com meta agressiva"
+                  placeholder="Ex: VP de Growth em Startup Série B"
                   value={customRole}
                   onChange={(e) => setCustomRole(e.target.value)}
-                  className="w-full bg-zinc-900 border border-zinc-800 rounded-lg p-2.5 text-xs text-white"
+                  className="w-full bg-[#08090d] border border-white/[0.08] rounded-lg p-2.5 text-xs text-white focus:outline-none focus:border-white/[0.2]"
                 />
               </div>
               <div>
-                <div className="flex justify-between text-xs text-zinc-400 mb-1">
+                <div className="flex justify-between text-[11px] font-mono text-zinc-400 uppercase mb-1">
                   <span>Nível de Ceticismo:</span>
-                  <span className="font-mono text-purple-400 font-bold">{customSkepticism}/10</span>
+                  <span className="text-emerald-400 font-bold">{customSkepticism}/10</span>
                 </div>
                 <input
                   type="range"
@@ -351,33 +379,35 @@ export function HeroInput({ onAnalyze, onSelectPreset, isLoading }: HeroInputPro
                   max={10}
                   value={customSkepticism}
                   onChange={(e) => setCustomSkepticism(Number(e.target.value))}
-                  className="w-full accent-purple-500"
+                  className="w-full accent-emerald-500"
                 />
               </div>
               <div>
-                <label className="block text-xs text-zinc-400 mb-1">Maior Objeção / Medo:</label>
+                <label className="block text-[11px] font-mono text-zinc-400 uppercase mb-1">
+                  Maior Objeção / Medo:
+                </label>
                 <input
                   type="text"
                   required
-                  placeholder="Ex: Medo de comprar e a equipe não usar no dia a dia"
+                  placeholder="Ex: Receio de bloqueio de conta ou perda de entregabilidade"
                   value={customPain}
                   onChange={(e) => setCustomPain(e.target.value)}
-                  className="w-full bg-zinc-900 border border-zinc-800 rounded-lg p-2.5 text-xs text-white"
+                  className="w-full bg-[#08090d] border border-white/[0.08] rounded-lg p-2.5 text-xs text-white focus:outline-none focus:border-white/[0.2]"
                 />
               </div>
-              <div className="flex justify-end gap-2 pt-2">
+              <div className="flex justify-end gap-2 pt-3 border-t border-white/[0.06]">
                 <button
                   type="button"
                   onClick={() => setShowCustomModal(false)}
-                  className="px-3 py-1.5 rounded-lg text-xs text-zinc-400 hover:text-white"
+                  className="px-3 py-1.5 rounded-lg text-xs font-mono text-zinc-400 hover:text-white"
                 >
                   Cancelar
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-1.5 rounded-lg bg-purple-600 hover:bg-purple-500 text-xs font-semibold text-white"
+                  className="px-4 py-1.5 rounded-lg bg-white text-zinc-950 text-xs font-semibold hover:bg-zinc-200 tactile-btn"
                 >
-                  Adicionar ao Debate
+                  Adicionar ao Comitê
                 </button>
               </div>
             </form>
@@ -387,4 +417,3 @@ export function HeroInput({ onAnalyze, onSelectPreset, isLoading }: HeroInputPro
     </section>
   );
 }
-

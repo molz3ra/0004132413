@@ -13,11 +13,11 @@ export interface PresetItem {
 export const PRESET_ANALYSES: PresetItem[] = [
   {
     id: 'saas-financeiro',
-    badge: 'SaaS B2B',
-    title: 'FinFlow — Conciliação e Fluxo de Caixa',
+    badge: 'B2B FINTECH',
+    title: 'FinFlow — Conciliação e Fluxo de Caixa Preditivo',
     url: 'https://finflow.io/enterprise-cashflow',
     niche: 'SaaS B2B / Fintech',
-    description: 'Landing page voltada para diretores financeiros e controllers de médias empresas.',
+    description: 'Landing page para diretores financeiros e controllers de médias empresas.',
     data: {
       report: {
         url: 'https://finflow.io/enterprise-cashflow',
@@ -31,35 +31,36 @@ export const PRESET_ANALYSES: PresetItem[] = [
           ctaSimplicityScore: 76,
         },
         criticalBottleneck:
-          'A precificação exige preenchimento de formulário longo de 9 campos com agendamento de demo, o que espanta CFOs e PMEs que buscam autoatendimento inicial.',
+          'A precificação exige preenchimento de formulário longo de 9 campos com agendamento forçado de demo, repelindo CFOs e controllers que buscam autoatendimento inicial.',
         executiveSummary:
-          'A landing page da FinFlow possui excelente autoridade visual e logos de clientes confiáveis. No entanto, o atraso em responder sobre compatibilidade bancária nacional (Open Finance) e a obrigatoriedade de agendar reuniões com SDR criam uma barreira de saída de quase 45% dos visitantes qualificados.',
+          'A landing page da FinFlow possui autoridade visual e logos de clientes confiáveis. No entanto, a omissão de detalhes sobre compatibilidade bancária nacional (Open Finance) e a obrigatoriedade de falar com SDR criam uma barreira de saída de quase 45% dos visitantes qualificados.',
         copyOptimizations: [
           {
             element: 'Headline Principal',
             originalText: 'A plataforma inteligente de gestão e inteligência financeira',
             suggestedText: 'Feche seu fluxo de caixa em 12 minutos diários com conciliação bancária 100% automatizada',
-            rationale: 'Foca em um benefício tangível de economia de tempo (12 minutos) em vez de um rótulo abstrato ("plataforma inteligente").',
+            rationale: 'Substitui um slogan abstrato ("plataforma inteligente") por um ganho de tempo mensurável e específico.',
           },
           {
             element: 'Subheadline',
             originalText: 'Transforme a tomada de decisão da sua empresa com relatórios preditivos avançados.',
             suggestedText: 'Conecte mais de 25 bancos e ERPs via Open Finance em 3 cliques. Sem necessidade de desenvolvedor.',
-            rationale: 'Quebra na hora a objeção de integração e esforço de TI que o Tech Lead e o CFO temem.',
+            rationale: 'Quebra na hora a objeção de integração e esforço de TI que paralisa a decisão do CFO e do Tech Lead.',
           },
           {
             element: 'Botão CTA',
             originalText: 'Agende uma Demonstração com Especialista',
             suggestedText: 'Ver Demonstração Interativa de 3 Minutos →',
-            rationale: 'Reduz o compromisso social de falar com um vendedor insistente antes de conhecer o software por dentro.',
+            rationale: 'Reduz o compromisso social de falar com um vendedor insistente antes de ver o software funcionando.',
           },
         ],
         personas: [
           {
             personaId: 'cfo-skeptic',
+            code: 'CFO-01',
+            initials: 'CM',
             personaName: 'Carlos Mendes',
-            role: 'CFO / Diretor Financeiro',
-            avatar: '💼',
+            role: 'Chief Financial Officer',
             conversionScore: 58,
             emotionalState: 'Cético',
             firstImpression: 'A página é corporativa e séria, mas esconde completamente os planos de preço.',
@@ -72,13 +73,14 @@ export const PRESET_ANALYSES: PresetItem[] = [
               'Qual é o custo mínimo de implantação para uma empresa com 50 funcionários?',
               'O contrato tem fidelidade anual ou posso cancelar a qualquer mês?',
             ],
-            verdictQuote: 'Não vou colocar meu e-mail e telefone para um vendedor ficar me ligando se nem sei se cabe no meu budget.',
+            verdictQuote: 'Não vou colocar meu e-mail e telefone para um vendedor me ligar se nem sei se cabe no meu budget.',
           },
           {
             personaId: 'dev-senior',
+            code: 'DEV-02',
+            initials: 'HV',
             personaName: 'Henrique Vaz',
-            role: 'Tech Lead / Engenheiro Sênior',
-            avatar: '⚡',
+            role: 'Principal Staff Engineer',
             conversionScore: 72,
             emotionalState: 'Curioso',
             firstImpression: 'O design é polido, mas faltam detalhes sobre a API e latência da sincronização.',
@@ -90,13 +92,14 @@ export const PRESET_ANALYSES: PresetItem[] = [
               'A sincronização com os bancos é em tempo real ou roda apenas em lote noturno?',
               'Os dados sensíveis passam por criptografia ponta a ponta?',
             ],
-            verdictQuote: 'Se o time de produto liberar acesso a um sandbox de API, eu aprovo o teste.',
+            verdictQuote: 'Se o time de produto liberar acesso a um sandbox de API aberto, eu aprovo o teste.',
           },
           {
             personaId: 'busy-smb',
+            code: 'SMB-03',
+            initials: 'PR',
             personaName: 'Patrícia Rocha',
-            role: 'Pequena Empresária / Fundadora',
-            avatar: '⏳',
+            role: 'Founder & Operações',
             conversionScore: 74,
             emotionalState: 'Pronto para Comprar',
             firstImpression: 'Os gráficos do dashboard parecem limpos e resolveriam meu caos com planilhas.',
@@ -125,11 +128,11 @@ export const PRESET_ANALYSES: PresetItem[] = [
   },
   {
     id: 'curso-tech',
-    badge: 'Infoproduto',
+    badge: 'DEV EDUCATION',
     title: 'Full-Stack AI Architect Masterclass',
     url: 'https://architect-ai.academy/masterclass',
     niche: 'Educação / Tecnologia',
-    description: 'Curso avançado de agentes autônomos e arquiteturas de LLM para desenvolvedores experientes.',
+    description: 'Formação em agentes autônomos e arquiteturas de LLM para desenvolvedores experientes.',
     data: {
       report: {
         url: 'https://architect-ai.academy/masterclass',
@@ -143,56 +146,58 @@ export const PRESET_ANALYSES: PresetItem[] = [
           ctaSimplicityScore: 82,
         },
         criticalBottleneck:
-          'A página usa gatilhos de escassez um pouco agressivos demais ("Restam apenas 4 vagas com bônus"), o que desperta o radar de desconfiança de programadores sêniores.',
+          'A página usa gatilhos de escassez agressivos ("Restam apenas 4 vagas com bônus"), despertando o ceticismo de engenheiros sêniores acostumados a repudiar marketing infoproduto.',
         executiveSummary:
-          'Excelente especificação da grade curricular e projetos práticos. A prova social de ex-alunos trabalhando em Big Techs passa forte autoridade. O maior ganho de conversão está em suavizar a agressividade do marketing e demonstrar trechos reais de código dos projetos construídos no curso.',
+          'Especificação da grade curricular é impecável. A autoridade de ex-alunos trabalhando em Big Techs passa solidez. O maior ganho de conversão consiste em suavizar clichês de marketing e demonstrar repositórios reais com testes e benchmarks.',
         copyOptimizations: [
           {
             element: 'Headline Principal',
             originalText: 'Torne-se um Engenheiro de IA de Elite e multiplique seu salário em 6 meses',
             suggestedText: 'Domine Arquitetura de Agentes Autônomos, MCPs e RAG de Baixa Latência em Produção',
-            rationale: 'Programadores experientes desconfiam de promessas de "multiplicar salário"; eles compram profundidade técnica de ponta.',
+            rationale: 'Engenheiros sêniores ignoram promessas salariais vazias; compram profundidade técnica de ponta.',
           },
           {
             element: 'Subheadline',
             originalText: 'Aprenda os segredos que as grandes empresas de tecnologia não querem que você saiba.',
             suggestedText: 'Construa 4 sistemas autônomos prontos para produção com Next.js, Vercel AI SDK e LangGraph. Código aberto para o seu portfólio.',
-            rationale: 'Mostra o stack exato e o benefício real tangível (código para portfólio e projetos completos).',
+            rationale: 'Declara a stack exata e entrega valor tangível (código para portfólio e projetos completos).',
           },
         ],
         personas: [
           {
             personaId: 'dev-senior',
+            code: 'DEV-02',
+            initials: 'HV',
             personaName: 'Henrique Vaz',
-            role: 'Tech Lead / Engenheiro Sênior',
-            avatar: '⚡',
+            role: 'Principal Staff Engineer',
             conversionScore: 84,
             emotionalState: 'Pronto para Comprar',
-            firstImpression: 'A ementa técnica é muito sólida. Fala de MCP servers, tool-use e structured outputs.',
+            firstImpression: 'A ementa técnica é muito sólida. Trata de MCP servers, tool-use e structured outputs.',
             frictionPoints: [
               'Algumas chamadas parecem promessas de cursinho barato de marketing digital.',
               'Gostaria de ver o repositório de um dos projetos de exemplo antes de pagar.',
             ],
             unansweredQuestions: [
-              'O acesso à comunidade no Discord e às gravações é vitalício?',
+              'O acesso à comunidade técnica e às atualizações arquiteturais é contínuo?',
             ],
-            verdictQuote: 'Se o instrutor realmente for quem construiu a arquitetura mostrada, vale cada centavo.',
+            verdictQuote: 'Se o autor realmente for quem implementou a arquitetura mostrada, o conteúdo se paga.',
           },
           {
             personaId: 'bargain-hunter',
+            code: 'RSK-04',
+            initials: 'RL',
             personaName: 'Rodrigo Lima',
-            role: 'Consumidor Precavido',
-            avatar: '🛡️',
+            role: 'Comprador Analítico',
             conversionScore: 78,
             emotionalState: 'Curioso',
-            firstImpression: 'Garantia de 7 dias é o mínimo da lei; gostaria de garantia estendida.',
+            firstImpression: 'Garantia de 7 dias é o mínimo legal; um programa desse nível deveria ter 15 dias.',
             frictionPoints: [
-              'Preço parcelado tem juros embutidos que não estavam destacados.',
+              'Preço parcelado tem juros de operadora que deveriam estar transparentes desde o início.',
             ],
             unansweredQuestions: [
-              'Se eu não gostar do método, a devolução é automática em 1 clique?',
+              'Se o conteúdo não for adequado ao meu nível, a devolução é automática em 1 clique?',
             ],
-            verdictQuote: 'Vou pagar no cartão porque a garantia protege, mas quero ver a primeira semana logo.',
+            verdictQuote: 'Vou pagar no cartão corporativo porque a garantia protege, mas quero ver o primeiro módulo hoje.',
           },
         ],
       },
@@ -210,11 +215,11 @@ export const PRESET_ANALYSES: PresetItem[] = [
   },
   {
     id: 'app-delivery',
-    badge: 'E-commerce / App',
+    badge: 'LOGÍSTICA & E-COM',
     title: 'FlashDrop — Entregas Rápidas no Mesmo Dia',
     url: 'https://flashdrop.delivery/merchants',
     niche: 'Logística / E-commerce',
-    description: 'Serviço de entregas same-day para lojas locais e pequenos e-commerces competirem com gigantes.',
+    description: 'Serviço de entregas same-day para pequenos e médios varejistas locais.',
     data: {
       report: {
         url: 'https://flashdrop.delivery/merchants',
@@ -228,56 +233,58 @@ export const PRESET_ANALYSES: PresetItem[] = [
           ctaSimplicityScore: 70,
         },
         criticalBottleneck:
-          'Não há mapa interativo de cobertura por CEP. O lojista não sabe se a sua região é atendida antes de se cadastrar.',
+          'Não há verificador de cobertura por CEP na primeira dobra. O lojista não sabe se a sua região é atendida antes de se cadastrar.',
         executiveSummary:
-          'A promessa de entrega em 2 horas é irresistível para pequenos varejistas, mas o medo de extravio de mercadorias e a falta de clareza sobre raio de atendimento e seguro das cargas geram atrito paralisante.',
+          'A promessa de entrega em 2 horas é atrativa, mas o receio de extravio de mercadorias e a falta de clareza sobre raio de atendimento e apólice de seguro criam atrito paralisante.',
         copyOptimizations: [
           {
             element: 'Headline Principal',
             originalText: 'A revolução da entrega rápida para a sua loja',
             suggestedText: 'Ofereça entrega em até 2 horas na sua cidade e aumente em 35% suas vendas locais',
-            rationale: 'Foca no benefício de crescimento de vendas do lojista.',
+            rationale: 'Foca no crescimento de faturamento do lojista em vez de um slogan de marketing genérico.',
           },
           {
             element: 'Garantia / Risco',
             originalText: 'Garantimos segurança em todas as rotas.',
-            suggestedText: 'Seguro integral de 100% da carga contra extravio ou avaria, com ressarcimento em 48h.',
-            rationale: 'Elimina o pavor do lojista de ter um produto caro danificado ou perdido pelo entregador.',
+            suggestedText: 'Seguro integral de 100% da carga contra avarias e extravios, com ressarcimento em até 48 horas.',
+            rationale: 'Remove o medo de prejuízo do lojista ao confiar mercadorias a terceiros.',
           },
         ],
         personas: [
           {
             personaId: 'busy-smb',
+            code: 'SMB-03',
+            initials: 'PR',
             personaName: 'Patrícia Rocha',
-            role: 'Pequena Empresária / Fundadora',
-            avatar: '⏳',
+            role: 'Founder & Operações',
             conversionScore: 64,
             emotionalState: 'Confuso',
-            firstImpression: 'Quero muito oferecer entrega rápida, mas não sei se cobre meu bairro.',
+            firstImpression: 'Quero oferecer entrega no mesmo dia, mas não encontrei onde checar meu bairro.',
             frictionPoints: [
-              'Tive que procurar muito e não achei um campo para digitar meu CEP.',
-              'Não explica como os motoboys retiram os pacotes na minha loja.',
+              'Tive que rolar a página inteira e não encontrei um verificador rápido de CEP.',
+              'Não explica a logística de coleta no meu endereço.',
             ],
             unansweredQuestions: [
-              'Tem mensalidade fixa ou pago apenas por entrega realizada?',
+              'Existe mensalidade fixa ou pago apenas sob demanda por entrega realizada?',
             ],
-            verdictQuote: 'Não vou me cadastrar para só depois descobrir que não atendem a minha região.',
+            verdictQuote: 'Não vou iniciar um cadastro para só depois descobrir que meu polo não é atendido.',
           },
           {
             personaId: 'bargain-hunter',
+            code: 'RSK-04',
+            initials: 'RL',
             personaName: 'Rodrigo Lima',
-            role: 'Consumidor Precavido',
-            avatar: '🛡️',
+            role: 'Comprador Analítico',
             conversionScore: 58,
             emotionalState: 'Frustrado',
-            firstImpression: 'Se o entregador quebrar meu produto, quem paga a conta?',
+            firstImpression: 'Se uma encomenda frágil quebrar na moto, quem assume o custo?',
             frictionPoints: [
-              'Falta menção explícita a seguro ou política de indenização.',
+              'Falta menção explícita à seguradora parceira ou política formal de indenização.',
             ],
             unansweredQuestions: [
-              'Qual é o procedimento se o cliente final não estiver em casa para receber?',
+              'Qual o procedimento caso o destinatário não esteja no local da entrega?',
             ],
-            verdictQuote: 'Se não tiver seguro registrado em contrato, eu não arrisco minhas mercadorias.',
+            verdictQuote: 'Sem seguro explícito em contrato, não arrisco enviar produtos de alto ticket.',
           },
         ],
       },
@@ -294,4 +301,3 @@ export const PRESET_ANALYSES: PresetItem[] = [
     },
   },
 ];
-

@@ -40,9 +40,10 @@ function generateSimulatedPersonaEvaluation(
 
   return {
     personaId: persona.id,
+    code: persona.code,
+    initials: persona.initials,
     personaName: persona.name,
     role: persona.role,
-    avatar: persona.avatar,
     conversionScore: score,
     emotionalState,
     firstImpression: `Ao escanear a página para o nicho de ${niche}, a promessa inicial é atrativa, mas faltam elementos de ancoragem para minha realidade.`,
@@ -102,9 +103,10 @@ Instruções para sua avaliação:
     return {
       ...object,
       personaId: persona.id,
+      code: persona.code,
+      initials: persona.initials,
       personaName: persona.name,
       role: persona.role,
-      avatar: persona.avatar,
     };
   } catch (err) {
     console.warn(`[AI Engine] Falha na avaliação da persona ${persona.name}, acionando simulação:`, err);

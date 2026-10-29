@@ -2,6 +2,8 @@ import { z } from 'zod';
 
 export const PersonaEvaluationSchema = z.object({
   personaId: z.string(),
+  code: z.string().optional(),
+  initials: z.string().optional(),
   personaName: z.string(),
   role: z.string(),
   avatar: z.string().optional(),
